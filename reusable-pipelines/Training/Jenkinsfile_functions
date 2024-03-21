@@ -11,20 +11,20 @@ pipeline {
     }
 
     stages {
-
         stage('Audit Tools') {
-            steps{
+            steps {
                 auditTools()
             }
         }
 
         stage('Unit Test') {
             steps {
-                dir('./java-tomcat-sample')
-                sh '''
-                echo "Running Unit tests"
-                mvn test
-                '''
+                dir('./java-tomcat-sample') {
+                   sh '''
+                      echo "Running Unit tests"
+                      mvn test
+                    '''
+                }
             }
         }
 
@@ -48,7 +48,7 @@ pipeline {
             //     expression { return params.RELEASE }
             // }
 
-            steps{
+            steps {
                 archiveArtifacts('**/*.war')
             }
         }
@@ -61,7 +61,7 @@ pipeline {
     }
 }
 
-string getBuildVersion() {
+String getBuildVersion() {
     if (params.RELEASE) {
       return env.RELEASE_VERSION + ':' + env.BUILD_NUMBER }
     else {
