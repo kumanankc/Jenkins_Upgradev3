@@ -34,7 +34,7 @@ pipeline {
 
         stage('Build') {
             environment {
-                VERSION_SUFFIX ="${sh(script: 'if [ "$RELEASE" = false] ; then echo -n  "${INT_VERSION}"ci:"${BUILD_NUMBER}" ; else echo -n "${RELEASE_VERSION}":"${BUILD_NUMBER}" ; fi', return stdOut: true )}"
+                VERSION_SUFFIX ="${sh(script: 'if [ "$RELEASE" = false] ; then echo -n  "${INT_VERSION}"ci:"${BUILD_NUMBER}" ; else echo -n "${RELEASE_VERSION}":"${BUILD_NUMBER}" ; fi', returnStdout: true )}"
             }
 
             steps {
@@ -63,9 +63,4 @@ pipeline {
 
         }
 
-    //post {
-    //   always {
-      //      cleanWs()
-       // }
-    //} 
 }
