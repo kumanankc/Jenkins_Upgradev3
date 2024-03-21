@@ -38,8 +38,8 @@ pipeline {
             }
 
             steps {
-                echo "Building version : "${INT_VERSION}" with suffix: ${VERSION_SUFFIX}"
-                echo "Mentiuon your application build code here!!!"
+                echo "Building version : ${INT_VERSION} with suffix: ${VERSION_SUFFIX}"
+                echo "Mention your application build code here!!!"
                 dir('./java-tomcat-sample') {
                     sh '''
                     mvn version:set -DnewVersion="${VERSION_SUFFIX}"-SNAPSHOT
